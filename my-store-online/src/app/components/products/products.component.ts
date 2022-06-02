@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from '../../models/product.models'
+import {Product} from '../../models/product.models';
+import {StoreService} from '../../services/store.service'
 
 @Component({
   selector: 'app-products',
@@ -33,13 +34,21 @@ export class ProductsComponent implements OnInit {
     price: 23,
     image: './assets/img/perrito1.jpg'
   },];
-  constructor() { }
+
+  constructor(
+    private storeService: StoreService
+  ) { 
+    this.myShoppingCart= this.storeService.getShoppingCart();
+  }
 
   ngOnInit(): void {
   }
+
  onADDTocart(product: Product){
 
-   this.myShoppingCart.push(product);
-    this.total= this.myShoppingCart.reduce((sum,item)=>sum + item.price,0);
+  this.storeService.addProduct(product);
+  this.total= this.storeService.getTotal();
+
  }
+
 }
