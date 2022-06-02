@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Product,CreateProductDTO} from '../../models/product.models';
+import {Product,CreateProductDTO,UpdateProductDTO} from '../../models/product.models';
 import {StoreService} from '../../services/store.service';
 import {ProductsService} from '../../services/products.service'
 
@@ -29,6 +29,7 @@ export class ProductsComponent implements OnInit {
   constructor(
     private storeService: StoreService,
     private productsService: ProductsService
+    
   ) { 
     this.myShoppingCart= this.storeService.getShoppingCart();
   }
@@ -74,6 +75,21 @@ export class ProductsComponent implements OnInit {
    .subscribe(data=>{
      this.products.unshift(data);
    });
+ }
+
+ updateProduct(){
+
+  const changes={
+   title:'nuevo tittle'
+  } 
+
+  const id = this.productChosen.id;
+  this.productsService.update(id , changes)
+  .subscribe(data=>{
+    const productindex= this.products.findIndex(item=> item.id==this.productChosen.id)
+    this.products[productindex]= data;
+  });
+
  }
 
 }
