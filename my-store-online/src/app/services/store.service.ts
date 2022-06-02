@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Product} from '../models/product.models'
+import {Product} from '../models/product.models';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,11 +8,17 @@ import {Product} from '../models/product.models'
 
 export class StoreService {
  private myShoppingCart: Product[]=[];
+ private mycart = new BehaviorSubject<Product[]>([]);
+
+ mycart$ = this.mycart.asObservable(); //observable signo pesos buenas practica
+
+
   constructor() { }
 
   addProduct(product: Product){
 
     this.myShoppingCart.push(product);
+    this.mycart.next(this.myShoppingCart);
 
   }
 

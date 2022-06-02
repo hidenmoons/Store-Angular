@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {StoreService} from '../../services/store.service'
 
 @Component({
   selector: 'app-nav',
@@ -8,11 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
 
   showmenu = false;
-
-  constructor() { }
+  count=0;
+  constructor(
+    private storeService:StoreService) { }
 
   ngOnInit(): void {
+
+    this.storeService.mycart$.subscribe(products=>{
+      this.count=products.length;
+    })
+
   }
+
  toggleMenu(){
    this.showmenu = !this.showmenu;
  }
