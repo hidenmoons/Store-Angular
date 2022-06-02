@@ -7,6 +7,7 @@ import {Product} from'./models/product.models';
 })
 export class AppComponent {
   imgParent = '';
+  showimg=true;
   products: Product[] = [{
     id: '1',
     name: 'EL mejor juguete',
@@ -34,5 +35,8 @@ export class AppComponent {
 
   onLoaded(img: string){
     console.log('log padre', img);
+  }
+  toggleimg(){
+    this.showimg= !this.showimg;
   }
 }
