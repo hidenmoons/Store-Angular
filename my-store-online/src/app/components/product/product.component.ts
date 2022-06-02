@@ -7,6 +7,7 @@ import { Product } from '../../models/product.models'
 })
 export class ProductComponent implements OnInit {
 @Output() addedProduct = new EventEmitter<Product>();
+@Output() showProduct = new EventEmitter<string>();
 
 @Input() product: Product= {
   id: '',
@@ -27,6 +28,9 @@ export class ProductComponent implements OnInit {
   }
   onAddtoCart(){
     this.addedProduct.emit(this.product)
+  }
+  onShowDetail(){
+    this.showProduct.emit(this.product.id)
   }
 
 }
