@@ -7,17 +7,24 @@ import { Product } from '../../models/product.models'
 })
 export class ProductComponent implements OnInit {
 @Output() addedProduct = new EventEmitter<Product>();
+
 @Input() product: Product= {
   id: '',
   title: '',
   price: 0,
-  image: '',
+  images: [],
   description: '',
-  category: ''
+  category:{
+    id:'',
+    name:'',
+  }
 };
 
   constructor() { }
 
+  ngOnInit(): void {
+      
+  }
   onAddtoCart(){
     this.addedProduct.emit(this.product)
   }
