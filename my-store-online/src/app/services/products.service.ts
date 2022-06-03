@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient,HttpParams, HttpErrorResponse,HttpStatusCode} from '@angular/common/http'
 import {Product,CreateProductDTO,UpdateProductDTO} from './../models/product.models'
 import { retry ,catchError,map } from 'rxjs';
-import { throwError } from 'rxjs';
+import { throwError,zip } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -35,6 +35,14 @@ export class ProductsService {
     )
     
   }
+
+  ferchAndUpdate(id:string, dto: UpdateProductDTO){
+    return zip(
+      this.getProduct(id),
+      this.update(id,dto)
+    );
+  }
+
   getProduct(id:string)
   {
     return this.http.get<Product>(`${this.apiURL}/${id}`)
