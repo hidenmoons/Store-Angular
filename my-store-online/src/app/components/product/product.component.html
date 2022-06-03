@@ -1,6 +1,6 @@
 <app-img *ngIf="product.images.length > 0"  [changeimg]="product.images[0]"></app-img>
 <h2>{{product.price | currency:'MEX'}}</h2>
-<p>{{product?.taxes}}</p>
+<p>{{product?.taxes | currency:'MEX'}}</p>
 <p>{{product.title}}</p>
 
 <!--//<p appHighlight>{{product.description}}</p>-->

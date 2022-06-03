@@ -25,11 +25,15 @@ export class ProductsService {
       retry(3),
       map(products=>products.map(item=>{
         return{
-          item,
+          
+          ...item,
           taxes: .19 * item.price
+          
         }
+        
       }))
     )
+    
   }
   getProduct(id:string)
   {

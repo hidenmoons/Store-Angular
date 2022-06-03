@@ -37,10 +37,11 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productsService.getProductsBtpage(10,0)
+    this.productsService.getallProducts(10,0)
     .subscribe(data =>{
       this.products= data;
     });
+    
   }
 
  onADDTocart(product: Product){
