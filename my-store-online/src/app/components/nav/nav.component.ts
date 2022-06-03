@@ -12,7 +12,6 @@ export class NavComponent implements OnInit {
 
   showmenu = false;
   count=0;
-  token='';
   profile: User | null=null;
  
   constructor(
@@ -27,26 +26,18 @@ export class NavComponent implements OnInit {
     
   }
 
-  login(){
-    this.authService.login('alexis@fdfds.com','sadsad')
-    .subscribe(rta=>{
-      this.token = rta.access_token;
-      console.log(rta.access_token);
-      console.log('toy en el nav');
-      this.getProfile();
+  login() {
+    // this.authService.login('sebas@mail.com', '1212')
+    // .subscribe(rta => {
+    //   this.token = rta.access_token;
+    //   console.log(this.token);
+    //   this.getProfile();
+    // });
+    this.authService.loginAndGet('alexis@fdfds.com', 'sadsad')
+    .subscribe(user => {
+      this.profile = user;
     });
   }
-
-  getProfile(){
-    this.authService.profile(this.token)
-    .subscribe(profile=>{
-      this.profile=profile
-      console.log(profile, 'profile')
-      console.log('toy en el nav profile');
-
-    });
-  }
-
  toggleMenu(){
    this.showmenu = !this.showmenu;
  }
