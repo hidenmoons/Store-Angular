@@ -25,7 +25,8 @@ export class ProductsComponent implements OnInit {
       name:'',
     }
   }
-
+  limit = 10;
+  offset=0;
   constructor(
     private storeService: StoreService,
     private productsService: ProductsService
@@ -35,7 +36,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productsService.getallProducts()
+    this.productsService.getProductsBtpage(10,0)
     .subscribe(data =>{
       this.products= data;
     });
@@ -101,5 +102,13 @@ export class ProductsComponent implements OnInit {
       this.showProductdetail = false;
      })
  }
+
+  loadmore(){
+    this.productsService.getProductsBtpage(this.limit,this.offset)
+    .subscribe(data =>{
+     this.products = this.products.concat(data);
+      this.offset+=this.limit;
+    });
+  }
 
 }
