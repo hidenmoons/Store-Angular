@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient,HttpParams, HttpErrorResponse,HttpStatusCode} from '@angular/common/http'
+import { checktime } from '../interceptors/time.interceptor';
 import {Product,CreateProductDTO,UpdateProductDTO} from './../models/product.models'
 import { retry ,catchError,map } from 'rxjs';
 import { throwError,zip } from 'rxjs';
@@ -20,7 +21,7 @@ export class ProductsService {
       params = params.set('limit', limit);
       params = params.set('offset', limit);
     }
-    return this.http.get<Product[]>(this.apiURL, {params})
+    return this.http.get<Product[]>(this.apiURL, {params, context:checktime()})
     .pipe(
       retry(3),
       map(products=>products.map(item=>{
