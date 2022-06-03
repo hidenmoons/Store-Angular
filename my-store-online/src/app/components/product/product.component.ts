@@ -19,6 +19,7 @@ export class ProductComponent implements OnInit {
     id:'',
     name:'',
   }
+  
 };
 
   constructor() { }

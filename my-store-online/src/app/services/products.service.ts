@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient,HttpParams} from '@angular/common/http'
+import {HttpClient,HttpParams, HttpErrorResponse,HttpStatusCode} from '@angular/common/http'
 import {Product,CreateProductDTO,UpdateProductDTO} from './../models/product.models'
-import { retry } from 'rxjs';
+import { retry ,catchError,map } from 'rxjs';
+import { throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,12 +22,31 @@ export class ProductsService {
     }
     return this.http.get<Product[]>(this.apiURL, {params})
     .pipe(
-      retry(3)
+      retry(3),
+      map(products=>products.map(item=>{
+        return{
+          item,
+          taxes: .19 * item.price
+        }
+      }))
     )
   }
   getProduct(id:string)
   {
     return this.http.get<Product>(`${this.apiURL}/${id}`)
+    .pipe(
+      catchError((error:HttpErrorResponse)=>{
+        if(error.status==HttpStatusCode.Conflict){
+          return throwError('ups algo se rompio en el server')
+        }  if(error.status==HttpStatusCode.NotFound){
+          return throwError('el producto no existe')
+        }
+        if(error.status==HttpStatusCode.Unauthorized){
+          return throwError('no estas autorizado')
+        }
+        return throwError('ups algo se rompio')
+      })
+    )
   }
 
   getProductsBtpage(limit: number, offset:number){
