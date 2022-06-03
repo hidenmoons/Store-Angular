@@ -29,4 +29,10 @@ export class ProductsService {
     return this.http.put<Product>(`${this.apiURL}/${id}`, dto);
   }
 
+  delete(id: string){
+
+    return this.http.delete<boolean>(`${this.apiURL}/${id}`);
+
+  }
+
 }

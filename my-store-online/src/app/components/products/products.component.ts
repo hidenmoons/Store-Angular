@@ -92,4 +92,14 @@ export class ProductsComponent implements OnInit {
 
  }
 
+ deleteProduct(){
+     const id = this.productChosen.id;
+     this.productsService.delete(id)
+     .subscribe(()=>{
+      const productindex= this.products.findIndex(item=> item.id==this.productChosen.id)
+      this.products.splice(productindex,1);
+      this.showProductdetail = false;
+     })
+ }
+
 }
