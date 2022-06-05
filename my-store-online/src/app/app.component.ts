@@ -54,10 +54,10 @@ export class AppComponent {
     });
   }
 
-  downloadpdf(){
-    this.fileservice.getfile('my.pdf','https://young-sands-07814.herokuapp.com/api/files/dummy.pdf', 'application/pdf')
-    .subscribe()
-  }
+  // downloadpdf(){
+  //   this.fileservice.getfile('my.pdf','https://young-sands-07814.herokuapp.com/api/files/dummy.pdf', 'application/pdf')
+  //   .subscribe()
+  // }
 
   onUpload(event: Event){
     const element = event.target as HTMLInputElement;

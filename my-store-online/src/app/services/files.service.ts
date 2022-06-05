@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {saveAs} from 'file-saver'
+//import {saveAs} from 'file-saver'
 import { tap,map } from 'rxjs';
 
 interface File{
@@ -17,17 +17,17 @@ export class FilesService {
 
   constructor(private http: HttpClient) { }
 
-  getfile(name: string , url: string , type: string){
-    return this.http.get(url,{responseType:'blob'})
-    .pipe(
-        tap(content=>{
-          const blob= new Blob([content],{type});
-          saveAs(blob,name);
-        }),
-        map(()=>true)
-      )
+  // getfile(name: string , url: string , type: string){
+  //   return this.http.get(url,{responseType:'blob'})
+  //   .pipe(
+  //       tap(content=>{
+  //         const blob= new Blob([content],{type});
+  //         saveAs(blob,name);
+  //       }),
+  //       map(()=>true)
+  //     )
     
-  }
+  // }
 
   uploadFile(file:Blob){
     const dto = new FormData();

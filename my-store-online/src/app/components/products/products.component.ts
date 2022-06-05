@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Product,CreateProductDTO,UpdateProductDTO} from '../../models/product.models';
 import {StoreService} from '../../services/store.service';
 import {ProductsService} from '../../services/products.service'
@@ -13,7 +13,7 @@ import { zip } from 'rxjs';
 export class ProductsComponent implements OnInit {
   myShoppingCart: Product[]=[];
   total=0;
-  products: Product[] = [];
+ @Input() products: Product[] = [];
   showProductdetail = false;
   productChosen:Product={
     id: '',
@@ -37,12 +37,7 @@ export class ProductsComponent implements OnInit {
     this.myShoppingCart= this.storeService.getShoppingCart();
   }
 
-  ngOnInit(): void {
-    this.productsService.getallProducts(10,0)
-    .subscribe(data =>{
-      this.products= data;
-    });
-    
+  ngOnInit(): void {    
   }
 
  onADDTocart(product: Product){
