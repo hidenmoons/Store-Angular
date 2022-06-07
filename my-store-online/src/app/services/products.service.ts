@@ -9,11 +9,20 @@ import { throwError,zip } from 'rxjs';
 })
 export class ProductsService {
 
-  private apiURL='https://young-sands-07814.herokuapp.com/api/products'
+  private apiURL='https://young-sands-07814.herokuapp.com/api'
 
   constructor(
     private http: HttpClient
   ) { }
+
+    getByCategory(categoryid:string , limit?:number, offset?:number){
+      let params= new HttpParams();
+      if(limit&& offset){
+        params = params.set('limit', limit);
+        params = params.set('offset', limit);
+      }
+      return this.http.get<Product[]>(`${this.apiURL}/categories/${categoryid}/products`,{params})
+    }
 
   getallProducts(limit?: number, offset?:number){
     let params= new HttpParams();
@@ -21,7 +30,7 @@ export class ProductsService {
       params = params.set('limit', limit);
       params = params.set('offset', limit);
     }
-    return this.http.get<Product[]>(this.apiURL, {params, context:checktime()})
+    return this.http.get<Product[]>(`${this.apiURL}/products`, {params, context:checktime()})
     .pipe(
       retry(3),
       map(products=>products.map(item=>{
@@ -46,7 +55,7 @@ export class ProductsService {
 
   getProduct(id:string)
   {
-    return this.http.get<Product>(`${this.apiURL}/${id}`)
+    return this.http.get<Product>(`${this.apiURL}/products}/${id}`)
     .pipe(
       catchError((error:HttpErrorResponse)=>{
         if(error.status==HttpStatusCode.Conflict){
@@ -63,23 +72,23 @@ export class ProductsService {
   }
 
   getProductsBtpage(limit: number, offset:number){
-    return this.http.get<Product[]>(this.apiURL, {
+    return this.http.get<Product[]>(`${this.apiURL}/products`, {
       params:{limit , offset}
     })
   }
 
   create(dto:CreateProductDTO ){
-    return this.http.post<Product>(this.apiURL,dto);
+    return this.http.post<Product>(`${this.apiURL}/products`,dto);
   }
 
   update(id: string,dto: UpdateProductDTO  ){
 
-    return this.http.put<Product>(`${this.apiURL}/${id}`, dto);
+    return this.http.put<Product>(`${this.apiURL}/products/${id}`, dto);
   }
 
   delete(id: string){
 
-    return this.http.delete<boolean>(`${this.apiURL}/${id}`);
+    return this.http.delete<boolean>(`${this.apiURL}/products/${id}`);
 
   }
 
