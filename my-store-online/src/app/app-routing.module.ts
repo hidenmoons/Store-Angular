@@ -45,7 +45,7 @@ const routes: Routes = [
   component: RecoveryComponent
   },
   {
-  path:'error',
+  path:'**',
   component: NotFoundComponent
   }
 ];
