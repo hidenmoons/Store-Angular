@@ -3,13 +3,11 @@ import { CommonModule } from '@angular/common';
 import { SwiperComponent, SwiperModule } from 'swiper/angular';
 
 import { WebsiteRoutingModule } from './website-routing.module';
-import { ImgComponent } from './components/img/img.component';
-import { ProductComponent } from './/components/product/product.component';
-import { ProductsComponent } from './/components/products/products.component';
+import { ImgComponent } from '../shared/components/img/img.component';
+import { SharedModule } from '../shared/shared.module';
 import { NavComponent } from './/components/nav/nav.component';
-import { ReversePipe } from './/pipes/reverse.pipe';
-import { TimeagoPipe } from './/pipes/timeago.pipe';
-import { HighlightDirective } from './/directives/highlight.directive';
+
+import { HighlightDirective } from '../shared/directives/highlight.directive';
 import { HomeComponent } from './/pages/home/home.component';
 import { CategoryComponent } from './/pages/category/category.component';
 import { MyCartComponent } from './/pages/my-cart/my-cart.component';
@@ -21,13 +19,8 @@ import { ProductDetailComponent } from './/pages/product-detail/product-detail.c
 import { LayaoutComponent } from './/components/layaout/layaout.component';
 
 @NgModule({
-  declarations: [
-    ImgComponent,
-    ProductComponent,
-    ProductsComponent,
+  declarations: [ 
     NavComponent,
-    ReversePipe,
-    TimeagoPipe,
     HighlightDirective,
     HomeComponent,
     CategoryComponent,
@@ -42,7 +35,8 @@ import { LayaoutComponent } from './/components/layaout/layaout.component';
   imports: [
     CommonModule,
     WebsiteRoutingModule,
-    SwiperModule
+    SwiperModule,
+    SharedModule
     
   ]
 })

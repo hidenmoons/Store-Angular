@@ -5,11 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './layaout.component.html',
   styleUrls: ['./layaout.component.scss']
 })
-export class LayaoutComponent implements OnInit {
+export class LayaoutComponent  {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+ 
 
 }
