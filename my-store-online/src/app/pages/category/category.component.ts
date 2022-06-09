@@ -4,6 +4,7 @@ import {ProductsService} from './../../services/products.service';
 import {Product} from '../../models/product.models';
 import {switchMap} from 'rxjs/operators'
 
+
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -13,11 +14,13 @@ export class CategoryComponent implements OnInit {
   products: Product[] = [];
   categoryID: string|null=null;
   limit = 10;
+  productid: string|null=null;
   offset=0;
 
   constructor(
     private route: ActivatedRoute,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private activatedroute:ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -37,8 +40,13 @@ export class CategoryComponent implements OnInit {
     }
      
     )
+
+    this.activatedroute.queryParamMap.subscribe(params=>{   
+      this.productid=params.get('product');
+      console.log(params,'parametros')
+    })
   }
-  
+
   onLoadmore(){
     this.productsService.getProductsBtpage(this.limit,this.offset)
     .subscribe(data =>{
