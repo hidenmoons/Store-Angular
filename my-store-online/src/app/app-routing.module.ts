@@ -56,6 +56,10 @@ const routes: Routes = [
       component: RecoveryComponent
       },
     ]
+  },
+  {
+    path:'cms',
+    loadChildren:()=>import('./cms/cms.module').then(m=>m.CmsModule)
   }
   ,
   {
