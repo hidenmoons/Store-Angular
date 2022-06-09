@@ -55,7 +55,7 @@ export class ProductsService {
 
   getProduct(id:string)
   {
-    return this.http.get<Product>(`${this.apiURL}/products}/${id}`)
+    return this.http.get<Product>(`${this.apiURL}/products/${id}`)
     .pipe(
       catchError((error:HttpErrorResponse)=>{
         if(error.status==HttpStatusCode.Conflict){
