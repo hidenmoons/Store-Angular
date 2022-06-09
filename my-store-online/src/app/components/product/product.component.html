@@ -7,4 +7,5 @@
 
 <!--//<p appHighlight>{{product.description}}</p>-->
 <button (click)="onShowDetail()">ver detalle</button> 
+<a routerLink='.'[queryParams]="{product: product.id}">Ver detalle</a>
 <button (click)="onAddtoCart()">Agregar al Carrito</button> 

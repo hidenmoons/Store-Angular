@@ -14,6 +14,12 @@ export class ProductsComponent implements OnInit {
   myShoppingCart: Product[]=[];
   total=0;
  @Input() products: Product[] = [];
+ //@Input() productid: string| null = null;
+ @Input()set productid(id: string | null){
+  if(id){
+    this.onShowDetail(id);
+  }
+ };
  @Output() loadmore = new EventEmitter();
   showProductdetail = false;
   productChosen:Product={
@@ -53,7 +59,9 @@ export class ProductsComponent implements OnInit {
 
  onShowDetail(id:string){
   this.statusDetail='loading';
-  
+  if(this.showProductdetail){
+    this.showProductdetail=true;
+  }
   this.productsService.getProduct(id)
   .subscribe(data=>{
     this.toggleProductdetail();
