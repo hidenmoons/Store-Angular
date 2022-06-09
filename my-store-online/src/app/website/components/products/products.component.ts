@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {Product,CreateProductDTO,UpdateProductDTO} from '../../models/product.models';
-import {StoreService} from '../../services/store.service';
-import {ProductsService} from '../../services/products.service'
+import {Product,CreateProductDTO,UpdateProductDTO} from '../../../models/product.models';
+import {StoreService} from '../../../services/store.service';
+import {ProductsService} from '../../../services/products.service'
 import { switchMap } from 'rxjs/operators';
 import { zip } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { zip } from 'rxjs';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent  {
   myShoppingCart: Product[]=[];
   total=0;
  @Input() products: Product[] = [];
@@ -44,8 +44,6 @@ export class ProductsComponent implements OnInit {
     this.myShoppingCart= this.storeService.getShoppingCart();
   }
 
-  ngOnInit(): void {    
-  }
 
  onADDTocart(product: Product){
 
