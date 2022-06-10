@@ -7,7 +7,7 @@ import { User } from 'my-store-online/src/app/models/user.model';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent  {
+export class ProfileComponent implements OnInit {
 
   user: User| null=null;
 
@@ -15,12 +15,11 @@ export class ProfileComponent  {
     private authService: AuthService
   ) { }
 
-  ngOninit():void {
-    this.authService.getProfile()
-    .subscribe(data=>{
-      this.user=data
+  ngOnInit(): void {
+    this.authService.user$
+    .subscribe(data => {
+      this.user = data;
     })
   }
-
 
 }

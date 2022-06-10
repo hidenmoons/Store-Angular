@@ -6,6 +6,7 @@ import { AuthService } from '../../../services/auth.service';
 import { CategoriaService } from '../../../services/categoria.service';
 import { Category } from '../../../models/categoria.model';
 import { UsersService } from 'my-store-online/src/app/services/users.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -23,7 +24,7 @@ export class NavComponent implements OnInit {
     private storeService:StoreService,
     private authService: AuthService,
     private categoriaservice: CategoriaService,
-    private userService:UsersService
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -33,21 +34,14 @@ export class NavComponent implements OnInit {
     })
     this.getallcategoies();
   }
-  
+
   login() {
-    // this.authService.login('sebas@mail.com', '1212')
-    // .subscribe(rta => {
-    //   this.token = rta.access_token;
-    //   console.log(this.token);
-    //   this.getProfile();
-    // });
-    this.authService.loginAndGet('sebas@mail.com', '1212')
-    .subscribe(user => {
-      this.profile = user;
-      this.token = '---';
-      this.getProfile();
+    this.authService.loginAndGet('alexis@angulartest.com','sadsad')
+    .subscribe(() => {
+      this.router.navigate(['/profile']);
     });
   }
+
 
   getProfile() {
     this.authService.getProfile(this.token)
