@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
+import { SwiperComponent, SwiperModule } from 'swiper/angular';
 
 import { ImgComponent } from './components/img/img.component';
 import { ProductComponent } from './/components/product/product.component';
@@ -19,7 +20,8 @@ import { TimeagoPipe } from './/pipes/timeago.pipe';
   ],
   imports: [
     CommonModule,
-    RouterLink
+    RouterModule,
+    SwiperModule
   ],
   exports:[
     ImgComponent,

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SwiperComponent, SwiperModule } from 'swiper/angular';
 
 import { WebsiteRoutingModule } from './website-routing.module';
 import { ImgComponent } from '../shared/components/img/img.component';
 import { SharedModule } from '../shared/shared.module';
 import { NavComponent } from './/components/nav/nav.component';
+import { SwiperComponent, SwiperModule } from 'swiper/angular';
 
 import { HighlightDirective } from '../shared/directives/highlight.directive';
 import { HomeComponent } from './/pages/home/home.component';
@@ -35,8 +35,8 @@ import { LayaoutComponent } from './/components/layaout/layaout.component';
   imports: [
     CommonModule,
     WebsiteRoutingModule,
-    SwiperModule,
-    SharedModule
+    SharedModule,
+    SwiperModule
     
   ]
 })
