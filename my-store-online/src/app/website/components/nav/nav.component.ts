@@ -5,6 +5,7 @@ import { User } from '../../../models/user.model'
 import { AuthService } from '../../../services/auth.service';
 import { CategoriaService } from '../../../services/categoria.service';
 import { Category } from '../../../models/categoria.model';
+import { UsersService } from 'my-store-online/src/app/services/users.service';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -15,11 +16,15 @@ export class NavComponent implements OnInit {
   showmenu = false;
   count=0;
   profile: User | null=null;
+  token='';
+
   categorie: Category[]=[]
   constructor(
     private storeService:StoreService,
     private authService: AuthService,
-    private categoriaservice: CategoriaService) { }
+    private categoriaservice: CategoriaService,
+    private userService:UsersService
+    ) { }
 
   ngOnInit(): void {
 
@@ -28,7 +33,7 @@ export class NavComponent implements OnInit {
     })
     this.getallcategoies();
   }
-
+  
   login() {
     // this.authService.login('sebas@mail.com', '1212')
     // .subscribe(rta => {
@@ -36,7 +41,16 @@ export class NavComponent implements OnInit {
     //   console.log(this.token);
     //   this.getProfile();
     // });
-    this.authService.loginAndGet('alexis@fdfds.com', 'sadsad')
+    this.authService.loginAndGet('sebas@mail.com', '1212')
+    .subscribe(user => {
+      this.profile = user;
+      this.token = '---';
+      this.getProfile();
+    });
+  }
+
+  getProfile() {
+    this.authService.getProfile(this.token)
     .subscribe(user => {
       this.profile = user;
     });
