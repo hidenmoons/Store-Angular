@@ -36,10 +36,17 @@
     </nav>
     <div class="info">
       <div class="account">
+<<<<<<< HEAD
+        <button *ngIf="!profile; else elseBlock " (click)="login()">login</button>
+        <ng-template #elseBlock> 
+         <a routerLink="/profile">{{profile?.email}}</a> 
+         </ng-template>
+=======
         <button *ngIf="!profile; else elseBlock" (click)="login()">Login</button>
         <ng-template #elseBlock>
           <a routerLink="/profile">{{ profile?.email }}</a>
         </ng-template>
+>>>>>>> origin/master
       </div>
       <div>
         <a href="">
