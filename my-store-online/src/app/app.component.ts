@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component ,OnInit} from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { UsersService } from './services/users.service';
 import { FilesService } from './services/files.service';
+import { TokenService } from './services/token.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   imgParent = '';
   showimg=true;
   token='';
@@ -16,9 +17,18 @@ export class AppComponent {
   constructor(
     private authService: AuthService,
     private userService: UsersService,
-    private fileservice: FilesService
+    private fileservice: FilesService,
+    private tokenservice:TokenService
   ){
 
+  }
+
+  ngOnInit(){
+    const token = this.tokenservice.getToken();
+    if(token){
+      this.authService.profile()
+      .subscribe()
+    }
   }
 
   onLoaded(img: string){

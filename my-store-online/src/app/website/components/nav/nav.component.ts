@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { Router } from '@angular/router';
 import {StoreService} from '../../../services/store.service'
 import { User } from '../../../models/user.model'
 import { AuthService } from '../../../services/auth.service';
@@ -20,7 +20,9 @@ export class NavComponent implements OnInit {
   constructor(
     private storeService:StoreService,
     private authService: AuthService,
-    private categoriaservice: CategoriaService) { }
+    private categoriaservice: CategoriaService,
+    private route:Router
+    ) { }
 
   ngOnInit(): void {
 
@@ -28,22 +30,25 @@ export class NavComponent implements OnInit {
       this.count=products.length;
     })
     this.getallcategoies();
+    this.authService.user$
+    .subscribe(data=>{
+      this.profile=data
+    })
   }
 
   login() {
-    // this.authService.login('sebas@mail.com', '1212')
-    // .subscribe(rta => {
-    //   this.token = rta.access_token;
-    //   console.log(this.token);
-    //   this.getProfile();
-    // });
+  
     this.authService.loginAndGet('alexis@fdfds.com', 'sadsad')
-    .subscribe(user => {
-      this.profile = user;
+    .subscribe(() => {
+      this.route.navigate(['/profile']);
     });
   }
 
-
+  logout(){
+    this.authService.logout()
+    this.profile=null;
+    this.route.navigate(['/home']);
+  }
 
  toggleMenu(){
    this.showmenu = !this.showmenu;

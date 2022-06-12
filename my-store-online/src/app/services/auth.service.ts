@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { switchMap, tap } from 'rxjs';
+import { BehaviorSubject, switchMap, tap } from 'rxjs';
 
 import {Auth} from '../models/auth.model'
 import {User} from '../models/user.model'
@@ -15,6 +15,12 @@ export class AuthService {
   private apiURL='https://young-sands-07814.herokuapp.com/api/auth'
 
 
+  private user = new BehaviorSubject<User | null>(null);
+
+  user$ = this.user.asObservable(); //observable signo pesos buenas practica
+
+
+
   constructor(
     private http:HttpClient,
     private tokenservice: TokenService
@@ -24,6 +30,7 @@ export class AuthService {
     return this.http.post<Auth>(`${this.apiURL}/login`, {email,password})
     .pipe(
       tap(response => this.tokenservice.saveToken(response.access_token))
+      
     );
     
   }
@@ -36,13 +43,12 @@ export class AuthService {
   }
 
   profile(){
-    //const headers = new HttpHeaders();
-    //headers.set(`Authorization`, `Bearer ${token}`);
-    return this.http.get<User>(`${this.apiURL}/profile`,{
-    // headers:{
-    //   Authorization: `Bearer ${token}`,
-    //   //'Content-type': 'application/json'
-    // }
-    });
+    return this.http.get<User>(`${this.apiURL}/profile`).
+    pipe(
+      tap(user =>this.user.next(user))
+    );
+  }
+  logout(){
+    this.tokenservice.deleteToken();
   }
 }

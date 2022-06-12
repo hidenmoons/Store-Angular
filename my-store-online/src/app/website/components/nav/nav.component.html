@@ -18,7 +18,9 @@
       <li *ngFor="let item of categorie">
         <a [routerLink]="['/category',item.id]">{{item.name}}</a>
       </li>
+      
     </ul>
+
   </div>
 </div>
 <div class="hide-mobile">
@@ -39,7 +41,9 @@
         <button *ngIf="!profile; else elseBlock " (click)="login()">login</button>
         <ng-template #elseBlock> 
          <a routerLink="/profile">{{profile?.email}}</a> 
+         <button (click)="logout()">Logout</button>
          </ng-template>
+         
       </div>
       <div>
         <a href="">
