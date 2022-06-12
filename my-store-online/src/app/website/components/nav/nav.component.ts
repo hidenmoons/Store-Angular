@@ -16,6 +16,7 @@ export class NavComponent implements OnInit {
   count=0;
   profile: User | null=null;
   categorie: Category[]=[]
+  token='';
   constructor(
     private storeService:StoreService,
     private authService: AuthService,
@@ -41,6 +42,9 @@ export class NavComponent implements OnInit {
       this.profile = user;
     });
   }
+
+
+
  toggleMenu(){
    this.showmenu = !this.showmenu;
  }

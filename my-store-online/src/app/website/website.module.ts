@@ -17,6 +17,8 @@ import { RecoveryComponent } from './/pages/recovery/recovery.component';
 import { ProfileComponent } from './/pages/profile/profile.component';
 import { ProductDetailComponent } from './/pages/product-detail/product-detail.component';
 import { LayaoutComponent } from './/components/layaout/layaout.component';
+import {QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
+
 
 @NgModule({
   declarations: [ 
@@ -36,7 +38,8 @@ import { LayaoutComponent } from './/components/layaout/layaout.component';
     CommonModule,
     WebsiteRoutingModule,
     SharedModule,
-    SwiperModule
+    SwiperModule,
+    QuicklinkModule
     
   ]
 })
