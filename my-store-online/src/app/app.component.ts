@@ -30,8 +30,8 @@ export class AppComponent {
 
   createUser(){
     this.userService.create({
-      name:'alexis',
-      email:'alexis@fdfds.com',
+      name:'joan',
+      email:'alexis@angulartest.com',
       password:'sadsad'
     })
     .subscribe(rta=>{
@@ -40,7 +40,7 @@ export class AppComponent {
   }
 
   login(){
-    this.authService.login('alexis@fdfds.com','sadsad')
+    this.authService.login('alexis@angulartest.com','sadsad')
     .subscribe(rta=>{
       console.log(rta.access_token);
       this.token= rta.access_token;

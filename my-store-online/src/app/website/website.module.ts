@@ -2,14 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { WebsiteRoutingModule } from './website-routing.module';
-import { ImgComponent } from '../shared/components/img/img.component';
 import { SharedModule } from '../shared/shared.module';
 import { NavComponent } from './/components/nav/nav.component';
-import { SwiperComponent, SwiperModule } from 'swiper/angular';
+import { SwiperModule } from 'swiper/angular';
 
+import { QuicklinkModule } from 'ngx-quicklink';
 import { HighlightDirective } from '../shared/directives/highlight.directive';
 import { HomeComponent } from './/pages/home/home.component';
-import { CategoryComponent } from './/pages/category/category.component';
 import { MyCartComponent } from './/pages/my-cart/my-cart.component';
 import { LoginComponent } from './/pages/login/login.component';
 import { RegisterComponent } from './/pages/register/register.component';
@@ -25,7 +24,6 @@ import {QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
     NavComponent,
     HighlightDirective,
     HomeComponent,
-    CategoryComponent,
     MyCartComponent,
     LoginComponent,
     RegisterComponent,
