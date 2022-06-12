@@ -20,7 +20,7 @@ export class NavComponent implements OnInit {
   token='';
 
   categorie: Category[]=[]
-  token='';
+ 
   constructor(
     private storeService:StoreService,
     private authService: AuthService,
