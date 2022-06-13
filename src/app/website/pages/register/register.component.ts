@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UrlTree } from '@angular/router';
-import { Onexit } from 'store-angular/src/app/guards/exit.guard';
+import { Onexit } from '../../../guards/exit.guard';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-register',
