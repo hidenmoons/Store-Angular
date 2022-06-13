@@ -1,6 +1,6 @@
 [build]
   publish = "dist/my-store-online"
-  command = "ng build"
+  command = "ng run build"
 [[redirects]]
   from = "/*"
   to = "/index.html"
