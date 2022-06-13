@@ -1,5 +1,5 @@
 [build]
-  publish = "my-store-online/dist/"
+  publish = "dist/"
   command = "ng build"
 [[redirects]]
   from = "/*"
