@@ -1,6 +1,6 @@
 [build]
-  publish = "dist/my-store-online"
-  command = "npm run "
+  publish = "dist/"
+  command = "npm run build "
 [[redirects]]
   from = "/*"
   to = "/index.html"
